@@ -40,21 +40,21 @@ export function OnlineLobby() {
 
   if (phase === "waiting") {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-emerald-50 flex items-center justify-center p-4">
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 flex items-center justify-center p-4">
         <Card className="w-full max-w-md">
           <CardHeader className="text-center">
-            <CardTitle className="text-2xl font-bold text-emerald-700">
+            <CardTitle className="text-2xl font-bold text-blue-700">
               Waiting for Opponent
             </CardTitle>
             {roomCode && (
-              <CardDescription className="text-lg font-mono bg-emerald-100 p-2 rounded">
+              <CardDescription className="text-lg font-mono bg-blue-100 p-2 rounded">
                 Room Code:{" "}
-                <span className="font-bold text-emerald-800">{roomCode}</span>
+                <span className="font-bold text-blue-800">{roomCode}</span>
               </CardDescription>
             )}
           </CardHeader>
           <CardContent className="text-center">
-            <div className="animate-spin w-8 h-8 border-4 border-emerald-200 border-t-emerald-600 rounded-full mx-auto mb-4"></div>
+            <div className="animate-spin w-8 h-8 border-4 border-blue-200 border-t-blue-600 rounded-full mx-auto mb-4"></div>
             <p className="text-slate-600">
               {roomCode
                 ? "Share the room code with your opponent"
@@ -67,10 +67,10 @@ export function OnlineLobby() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-emerald-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 flex items-center justify-center p-4">
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
-          <CardTitle className="flex text-3xl font-bold text-emerald-700 items-center justify-center gap-4">
+          <CardTitle className="flex text-3xl font-bold text-blue-700 items-center justify-center gap-4">
             <Image
               src="/battleship.png"
               alt="battleship"
@@ -81,7 +81,7 @@ export function OnlineLobby() {
           </CardTitle>
           <CardDescription>
             Connection:{" "}
-            <span className={connected ? "text-emerald-600" : "text-red-600"}>
+            <span className={connected ? "text-green-600" : "text-red-600"}>
               {connected ? "Connected" : "Connecting..."}
             </span>
           </CardDescription>
@@ -117,7 +117,7 @@ export function OnlineLobby() {
               <Button
                 onClick={handleQuickMatch}
                 disabled={!connected || !playerName.trim()}
-                className="w-full bg-emerald-600 hover:bg-emerald-700"
+                className="w-full bg-blue-600 hover:bg-blue-700"
               >
                 Join Quick Match
               </Button>

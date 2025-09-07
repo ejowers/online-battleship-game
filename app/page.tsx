@@ -28,7 +28,7 @@ export type Cell = {
 
 export type GamePhase = "placement" | "battle" | "ended";
 
-export default function BattleshipGame() {
+const BattleshipGame = () => {
   const [myShips, setMyShips] = useState<Ship[]>([
     { id: "carrier", size: 5, placed: false },
     { id: "battleship", size: 4, placed: false },
@@ -294,4 +294,6 @@ export default function BattleshipGame() {
       </div>
     </div>
   );
-}
+};
+
+export default BattleshipGame;
