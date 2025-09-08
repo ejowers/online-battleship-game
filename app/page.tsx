@@ -7,26 +7,8 @@ import { OnlineLobby } from "@/components/online-lobby";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useMultiplayer } from "@/hooks/use-socket-multiplayer";
+import { Cell, Ship } from "@/lib/types";
 import Image from "next/image";
-
-export type Ship = {
-  id: string;
-  size: number;
-  placed: boolean;
-  position?: { row: number; col: number };
-  orientation?: "horizontal" | "vertical";
-  positions?: { row: number; col: number }[];
-  hits?: boolean[];
-};
-
-export type Cell = {
-  hasShip: boolean;
-  shipId?: string;
-  isHit: boolean;
-  isMiss: boolean;
-};
-
-export type GamePhase = "placement" | "battle" | "ended";
 
 const BattleshipGame = () => {
   const [myShips, setMyShips] = useState<Ship[]>([
@@ -36,29 +18,22 @@ const BattleshipGame = () => {
     { id: "submarine", size: 3, placed: false },
     { id: "destroyer", size: 2, placed: false },
   ]);
-  const [myBoard, setMyBoard] = useState<Cell[][]>(
+
+  const getBlankBoard = () =>
     Array(10)
       .fill(null)
       .map(() =>
         Array(10)
           .fill(null)
           .map(() => ({ hasShip: false, isHit: false, isMiss: false }))
-      )
-  );
-  const [opponentBoard, setOpponentBoard] = useState<Cell[][]>(
-    Array(10)
-      .fill(null)
-      .map(() =>
-        Array(10)
-          .fill(null)
-          .map(() => ({ hasShip: false, isHit: false, isMiss: false }))
-      )
-  );
+      );
+
+  const [myBoard, setMyBoard] = useState<Cell[][]>(getBlankBoard());
+  const [opponentBoard, setOpponentBoard] = useState<Cell[][]>(getBlankBoard());
   const [shipsPlaced, setShipsPlaced] = useState(false);
 
   const {
     socket,
-    connected,
     phase,
     currentTurn,
     players,
@@ -134,6 +109,7 @@ const BattleshipGame = () => {
         size: ship.size,
         positions: ship.positions || [],
         hits: ship.hits || Array(ship.size).fill(false),
+        placed: false,
       }));
       placeShips(serverShips);
       setShipsPlaced(true);

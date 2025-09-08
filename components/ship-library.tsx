@@ -3,7 +3,7 @@
 import type React from "react";
 
 import { cn } from "@/lib/utils";
-import type { Ship } from "@/app/page";
+import type { Ship } from "@/lib/types";
 
 interface ShipLibraryProps {
   ships: Ship[];

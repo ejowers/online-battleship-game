@@ -8,18 +8,7 @@ import {
   type ReactNode,
 } from "react";
 import { io, type Socket } from "socket.io-client";
-
-interface Ship {
-  id: string;
-  size: number;
-  positions: { row: number; col: number }[];
-  hits: boolean[];
-}
-
-interface Player {
-  id: string;
-  name: string;
-}
+import { Attack, GamePhase, Player, Ship } from "@/lib/types";
 
 interface MultiplayerContextType {
   socket: Socket | null;
@@ -27,7 +16,7 @@ interface MultiplayerContextType {
   gameId: string | null;
   players: Player[];
   currentTurn: string | null;
-  phase: "lobby" | "waiting" | "setup" | "battle" | "finished";
+  phase: GamePhase;
   winner: string | null;
   roomCode: string | null;
   joinQuickMatch: (playerName: string) => void;
@@ -51,17 +40,10 @@ export function MultiplayerProvider({ children }: { children: ReactNode }) {
   const [gameId, setGameId] = useState<string | null>(null);
   const [players, setPlayers] = useState<Player[]>([]);
   const [currentTurn, setCurrentTurn] = useState<string | null>(null);
-  const [phase, setPhase] = useState<
-    "lobby" | "waiting" | "setup" | "battle" | "finished"
-  >("lobby");
+  const [phase, setPhase] = useState<GamePhase>("lobby");
   const [winner, setWinner] = useState<string | null>(null);
   const [roomCode, setRoomCode] = useState<string | null>(null);
-  const [attackResult, setAttackResult] = useState<{
-    row: number;
-    col: number;
-    isHit: boolean;
-    attackerId: string;
-  } | null>(null);
+  const [attackResult, setAttackResult] = useState<Attack | null>(null);
 
   useEffect(() => {
     const socketInstance = io();

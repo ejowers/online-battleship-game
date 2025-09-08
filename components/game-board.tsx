@@ -3,7 +3,7 @@
 import type React from "react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import type { Ship, Cell } from "@/app/page";
+import type { Ship, Cell } from "@/lib/types";
 import { Button } from "./ui/button";
 
 interface GameBoardProps {
