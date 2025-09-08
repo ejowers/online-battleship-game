@@ -235,7 +235,6 @@ const BattleshipGame = () => {
               <Button
                 onClick={handleReadyClick}
                 disabled={!allMyShipsPlaced || shipsPlaced}
-                size="lg"
               >
                 {shipsPlaced ? "Ready - Waiting..." : "Ready to Battle"}
               </Button>
@@ -284,7 +283,7 @@ const BattleshipGame = () => {
                   : "Defeat... but fight again!"}
               </p>
               <div className="space-x-4">
-                <Button onClick={() => window.location.reload()} size="lg">
+                <Button onClick={() => window.location.reload()}>
                   Battle Again
                 </Button>
               </div>

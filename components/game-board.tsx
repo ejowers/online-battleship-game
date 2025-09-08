@@ -4,6 +4,7 @@ import type React from "react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import type { Ship, Cell } from "@/app/page";
+import { Button } from "./ui/button";
 
 interface GameBoardProps {
   board: Cell[][];
@@ -277,7 +278,7 @@ export function GameBoard({
       {/* Orientation toggle for setup phase */}
       {isSetupPhase && (
         <div className="mt-4 text-center">
-          <button
+          <Button
             onClick={() =>
               setDragOrientation(
                 dragOrientation === "horizontal" ? "vertical" : "horizontal"
@@ -286,7 +287,7 @@ export function GameBoard({
             className="px-4 py-2 bg-secondary text-secondary-foreground rounded-md hover:bg-secondary/80 transition-colors"
           >
             Orientation: {dragOrientation}
-          </button>
+          </Button>
         </div>
       )}
     </div>
